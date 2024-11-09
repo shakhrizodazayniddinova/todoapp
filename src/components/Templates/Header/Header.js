@@ -2,13 +2,14 @@ import React from 'react';
 import HeaderStyled from './HeaderStyled';
 import logo from './logo.png'
 import { useDispatch, useSelector } from 'react-redux';
+import { toggleDarkMode } from '../../../redux/reducers/layout';
 
 export default function Header() {
   const dispatch = useDispatch();
   const theme = useSelector(state => state.layout.darkMode);
 
-  const toggleTheme = (theme) => {
-    dispatch({type: 'DARK_MODE', payload: theme === 'light' ? 'dark' : 'light'})
+  const toggleTheme = () => {
+    dispatch(toggleDarkMode())
   };
 
   return (
