@@ -5,6 +5,7 @@ import { faCheck, faPen, faPlus, faTrash, faXmark } from "@fortawesome/free-soli
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import TodoStyled from "./TodoStyled";
 import { addNewTask, completedMark, editTask, incompletedMark, removeTask } from "../../../redux/reducers/todosReducer";
+import { Slide } from "react-awesome-reveal";
 
 export default function TodoApp() {
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ export default function TodoApp() {
     const capitalizedValue = value.charAt(0).toUpperCase() + value.slice(1);
     dispatch(addNewTask(capitalizedValue));
     setValue('');
-    }
+  }
 
   // remove task function
   const handleRemoveTask = (index) => dispatch(removeTask(index));  // remove task
@@ -72,37 +73,39 @@ export default function TodoApp() {
                     <ListGroup className="todoList">
                         {/* tasks list */}
                         {tasks.map((task, index) => (
-                            <ListGroup.Item key={index} className="todo" onDoubleClick={() => toggleComplete(index)}
-                                style={{
-                                    textDecoration: task.completed ? 'line-through' : 'none', // line-through if completed
-                                }}>
-                                
-                                {editIndex === index ? (
-                                    <input value={editText} onChange={(e) => setEditText(e.target.value)} onBlur={saveEditTask} autoFocus/>
-                                ) : (
-                                    // Display task title
-                                    <span onDoubleClick={() => toggleComplete(index)}>
-                                        {task.title}
-                                    </span>
-                                )}
-                                
-                                <div className="tasksBtn">
-                                    {/* completed button */}
-                                    <button onClick={() => (task.completed ? toggleIncomplete(index) : toggleComplete(index))}>
-                                        <FontAwesomeIcon icon={task.completed ? faXmark : faCheck} />
-                                    </button>
+                            <Slide direction="down" duration={500} style={{width: '100%'}}>
+                                <ListGroup.Item key={index} className="todo" onDoubleClick={() => toggleComplete(index)}
+                                    style={{
+                                        textDecoration: task.completed ? 'line-through' : 'none', // line-through if completed
+                                    }}>
+                                    
+                                    {editIndex === index ? (
+                                        <input value={editText} onChange={(e) => setEditText(e.target.value)} onBlur={saveEditTask} autoFocus/>
+                                    ) : (
+                                        // Display task title
+                                        <span onDoubleClick={() => toggleComplete(index)}>
+                                            {task.title}
+                                        </span>
+                                    )}
+                                    
+                                    <div className="tasksBtn">
+                                        {/* completed button */}
+                                        <button onClick={() => (task.completed ? toggleIncomplete(index) : toggleComplete(index))}>
+                                            <FontAwesomeIcon icon={task.completed ? faXmark : faCheck} />
+                                        </button>
 
-                                    {/* edit button */}
-                                    <button onClick={() => startEditTask(task, index)}>
-                                        <FontAwesomeIcon icon={faPen}/>
-                                    </button>
+                                        {/* edit button */}
+                                        <button onClick={() => startEditTask(task, index)}>
+                                            <FontAwesomeIcon icon={faPen}/>
+                                        </button>
 
-                                    {/* remove task button */}
-                                    <button onClick={() => handleRemoveTask(index)}>
-                                        <FontAwesomeIcon icon={faTrash} />
-                                    </button>
-                                </div>
-                            </ListGroup.Item>
+                                        {/* remove task button */}
+                                        <button onClick={() => handleRemoveTask(index)}>
+                                            <FontAwesomeIcon icon={faTrash} />
+                                        </button>
+                                    </div>
+                                </ListGroup.Item>
+                            </Slide>
                         ))}
                     </ListGroup>
                 </div>
