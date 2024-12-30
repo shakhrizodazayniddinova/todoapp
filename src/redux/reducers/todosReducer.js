@@ -1,9 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// initial state with an empty tasks array
+const savedSubject = localStorage.getItem('subjects'); // subjectni olish
+const savedTasks = localStorage.getItem('tasks'); // tasksni olish
+
+const initialSubject = savedSubject || ''; // agar null bo'lsa bo'sh stringga o'zgartiramiz
+const initialTasks = savedTasks ? JSON.parse(savedTasks) : []; // tasksni to'g'ri o'qish
+
 const initialState = {
-    tasks: JSON.parse(localStorage.getItem('tasks')) || []  //each task will have {title: 'title', completed: false}
+    tasks: initialTasks,
+    subjects: initialSubject,  // subjectni boshlang'ich holatda saqlash
 };
+
 
 const todosSlice = createSlice({
     name: 'todos',
@@ -12,6 +19,9 @@ const todosSlice = createSlice({
     reducers: {
         addNewTask: (state, action) => {
             state.tasks.unshift({title: action.payload, completed: false});
+        },
+        addSubject: (state, action) => {
+            state.subjects = [action.payload];;
         },
         removeTask: (state, action) => {
             state.tasks.splice(action.payload, 1);
@@ -29,5 +39,5 @@ const todosSlice = createSlice({
     }
 })
 
-export const { addNewTask, removeTask, completedMark, incompletedMark, editTask } = todosSlice.actions;
+export const { addNewTask, addSubject, removeTask, completedMark, incompletedMark, editTask } = todosSlice.actions;
 export default todosSlice.reducer;

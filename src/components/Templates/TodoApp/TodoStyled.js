@@ -18,7 +18,7 @@ const TodoStyled = styled.div`
     -ms-overflow-style: none;
     scrollbar-width: none;
 
-    @media (max-width: 420px){
+    @media (max-width: 450px){
         padding: 40px 10px;
         width: 300px;
         height: 520px;
@@ -29,11 +29,40 @@ const TodoStyled = styled.div`
         flex-direction: column;
         gap: 58px;
 
+        .formsContainer{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            @media (max-width: 420px){
+                gap: 15px;
+            }
+        }
+
         .formDiv{
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
+
+            .subjectInput{
+                width: 330px;
+                height: 37px;
+                outline: none !important;
+                border: none;
+                border-bottom: 1px solid #9E78CF !important;
+                background-color: transparent;
+                color: ${(props) => props.theme === 'dark' ? 'white' : 'black'};
+
+            }
+            
+            .subjectText{
+                font-size: 22px;
+
+                @media (max-width: 420px){
+                    font-size: 18px;
+                }
+            }
     
             .todoInput{
                 width: 330px;
@@ -77,7 +106,7 @@ const TodoStyled = styled.div`
                     color: #9E78CF;
                     border-radius: 10px;
 
-                    @media (max-width: 420px){
+                    @media (max-width: 450px){
                         padding: 8px 10px;
                     }
 
@@ -89,7 +118,7 @@ const TodoStyled = styled.div`
                         width: 75%;
                         padding: 0;
 
-                        @media (max-width: 420px){
+                        @media (max-width: 450px){
                             padding-right: 8px;
                         }
                     }
@@ -103,7 +132,7 @@ const TodoStyled = styled.div`
                             background-color: transparent;
                             border: none;
 
-                            @media (max-width: 420px){
+                            @media (max-width: 450px){
                                 font-size: 16px;
                                 padding: 0 4px;
                             }
