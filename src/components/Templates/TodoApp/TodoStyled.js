@@ -27,7 +27,7 @@ const TodoStyled = styled.div`
     .container{
         display: flex;
         flex-direction: column;
-        gap: 58px;
+        gap: 45px;
 
         .formsContainer{
             display: flex;
