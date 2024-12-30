@@ -11,7 +11,7 @@ const todosSlice = createSlice({
 
     reducers: {
         addNewTask: (state, action) => {
-            state.tasks.push({title: action.payload, completed: false});
+            state.tasks.unshift({title: action.payload, completed: false});
         },
         removeTask: (state, action) => {
             state.tasks.splice(action.payload, 1);

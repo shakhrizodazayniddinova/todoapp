@@ -28,7 +28,7 @@ export default function TodoApp() {
     const capitalizedValue = value.charAt(0).toUpperCase() + value.slice(1);
     dispatch(addNewTask(capitalizedValue));
     setValue('');
-  }
+  };
 
   // remove task function
   const handleRemoveTask = (index) => dispatch(removeTask(index));  // remove task
@@ -57,6 +57,7 @@ export default function TodoApp() {
                     type="text" 
                     value={value} 
                     onChange={(e) => setValue(e.target.value)} 
+                    onKeyDown={(e) => e.key === 'Enter' && addNewTaskHandle()}
                     placeholder="Add new task"/>
 
                 {/* add button */}
