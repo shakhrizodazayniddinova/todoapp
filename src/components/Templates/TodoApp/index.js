@@ -46,7 +46,11 @@ export default function TodoApp() {
   }
 
   // save edit task function
-  const saveEditTask = () => dispatch(editTask({ index: editIndex, title: editText }))
+  const saveEditTask = () => {
+    dispatch(editTask({ index: editIndex, title: editText }));
+    setEditIndex('');
+    setEditText(null);
+  }
 
   return (
     <TodoStyled theme={theme}>
@@ -58,6 +62,7 @@ export default function TodoApp() {
                     value={value} 
                     onChange={(e) => setValue(e.target.value)} 
                     onKeyDown={(e) => e.key === 'Enter' && addNewTaskHandle()}
+                    // onFocus={}
                     placeholder="Add new task"/>
 
                 {/* add button */}
@@ -80,8 +85,9 @@ export default function TodoApp() {
                                         textDecoration: task.completed ? 'line-through' : 'none', // line-through if completed
                                     }}>
                                     
+                                    {/* edit task input */}
                                     {editIndex === index ? (
-                                        <input value={editText} onChange={(e) => setEditText(e.target.value)} onBlur={saveEditTask} autoFocus/>
+                                        <input value={editText} onChange={(e) => setEditText(e.target.value)} />
                                     ) : (
                                         // Display task title
                                         <span onDoubleClick={() => toggleComplete(index)}>
@@ -96,8 +102,8 @@ export default function TodoApp() {
                                         </button>
 
                                         {/* edit button */}
-                                        <button onClick={() => startEditTask(task, index)}>
-                                            <FontAwesomeIcon icon={faPen}/>
+                                        <button onClick={() => editIndex === index ? saveEditTask() : startEditTask(task, index)}>
+                                            <FontAwesomeIcon icon={editIndex === index ? faCheck : faPen}/>
                                         </button>
 
                                         {/* remove task button */}
