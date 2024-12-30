@@ -71,7 +71,7 @@ const TodoStyled = styled.div`
                     align-items: center;
                     justify-content: space-between;
                     width: 100%;
-                    height: 55px;
+                    min-height: 55px;
                     background-color: ${(props) => props.theme === 'dark' ? '#15101C' : '#F8F9FA'};
                     border: none;
                     color: #9E78CF;
