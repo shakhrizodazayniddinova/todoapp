@@ -58,6 +58,7 @@ const TodoStyled = styled.div`
             
             .subjectText{
                 font-size: 22px;
+                color: ${(props) => props.theme === 'dark' ? 'white' : 'black'};
 
                 @media (max-width: 420px){
                     font-size: 18px;

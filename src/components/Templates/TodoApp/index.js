@@ -107,7 +107,7 @@ export default function TodoApp() {
                             placeholder="Please enter a subject"
                         />
                         <button className="addBtn btn p-1 px-2" onClick={handleAddSubject}>
-                            <FontAwesomeIcon icon={faPlus} />
+                            <FontAwesomeIcon icon={faCheck} />
                         </button>
                         </>
                     )}
