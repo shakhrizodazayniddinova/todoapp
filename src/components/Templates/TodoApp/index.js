@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ListGroup } from "react-bootstrap";
-import { faCheck, faPen, faPlus, faTrash, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faPen, faPlus, faSpellCheck, faTrash, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import TodoStyled from "./TodoStyled";
 import { addNewTask, addSubject, completedMark, editTask, incompletedMark, removeTask } from "../../../redux/reducers/todosReducer";
@@ -141,6 +141,7 @@ export default function TodoApp() {
                                 <ListGroup.Item key={index} className="todo" onDoubleClick={() => toggleComplete(index)}
                                     style={{
                                         textDecoration: task.completed ? 'line-through' : 'none', // line-through if completed
+                                        color: task.completed ? 'gray' : '',
                                     }}>
                                     
                                     {/* edit task input */}
@@ -161,7 +162,7 @@ export default function TodoApp() {
 
                                         {/* edit button */}
                                         <button onClick={() => editIndex === index ? saveEditTask() : startEditTask(task, index)}>
-                                            <FontAwesomeIcon icon={editIndex === index ? faCheck : faPen}/>
+                                            <FontAwesomeIcon icon={editIndex === index ? faSpellCheck : faPen}/>
                                         </button>
 
                                         {/* remove task button */}
